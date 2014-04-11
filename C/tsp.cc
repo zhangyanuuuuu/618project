@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
+#include <time.h>
 #include <assert.h>
 
 //#define DEBUG
@@ -671,10 +672,14 @@ int main(int argc, char *argv[])
     srand(SEED);
     
     // do the TSP solution 
+		clock_t t;
+		t = clock();
     anneal();
+		t = clock() - t;
 
 		// print the tour
 		print_tour();
+		printf("Program took %d clocks (%f seconds).\n",t,((float)t)/CLOCKS_PER_SEC);
     // that's it. 
 		return 0;
 }
