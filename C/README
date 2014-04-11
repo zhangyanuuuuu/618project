@@ -1,0 +1,2 @@
+sample commands:
+./tsp ../benchmark/eil51.tsp 120 100 0.98 500
