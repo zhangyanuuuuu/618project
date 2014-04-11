@@ -13,12 +13,9 @@
 #define MAX_TEMP_STEPS 500
 #define TEMP_START 20
 #define COOLING 0.95
-//#define CITY_N 100
 #define BOLTZMANN_COEFF 0.1
 
 using namespace std;
-
-int CITY_N;
 
 struct city {
 	double x;
@@ -30,6 +27,10 @@ struct permutation {
 	int* order;
 	int nSucc;
 };
+
+//global variable
+struct city *cities;
+int CITY_N;
 
 /* rounding function, but at .5 rounds to the lower int. Due to the TSPLIB
  * standard library.
@@ -177,7 +178,7 @@ private:
 			i1 = perm->order[i];
 			i2 = perm->order[i+1];
 			perm->cost += euclideanDistance(&cities[i1], &cities[i2]);
-		}
+	}
 		i1 = perm->order[CITY_N - 1];
 		i2 = perm->order[0];
 		perm->cost += euclideanDistance(&cities[i1], &cities[i2]);
@@ -286,8 +287,13 @@ public:
 					break;
 			}
 
-			if (currPerm->cost < allMinPerm->cost)
-				memcpy(allMinPerm, currPerm, sizeof(struct permutation));
+			if (currPerm->cost < allMinPerm->cost) {
+				allMinPerm->nSucc = currPerm->nSucc;
+	 			allMinPerm->cost = currPerm->cost;	
+				for (int i = 0; i < CITY_N; i++) {
+					allMinPerm->order[i] = currPerm->order[i];
+				}
+			}
 
 			if (currPerm->nSucc == 0) {
 				cout << "No swaps occured. Exit" << endl;

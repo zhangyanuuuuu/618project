@@ -3,7 +3,8 @@
 //#define FILENAME "../benchmark/kroA100.tsp"
 #define NUMBER_RUNS 1
 #define DEBUG
-void readFile(char* FILENAME, struct city *cities)
+
+void readFile(char* FILENAME)
 {
 	FILE *fp;
 	char line[80];
@@ -21,7 +22,8 @@ void readFile(char* FILENAME, struct city *cities)
 #endif
 		}
 	}
-	while (fgets(line, 80, fp) != NULL && i < 100) {
+	cities = (struct city *) malloc(CITY_N * sizeof(struct city));
+	while (fgets(line, 80, fp) != NULL && i < CITY_N) {
 		sscanf(line, "%*d %lf %lf", &(cities[i].x), &(cities[i].y));
 		++i;
 	}
@@ -36,17 +38,17 @@ void printCities(struct city *cities)
 
 int main(int argc, char* argv[])
 {
-	struct city *cities = (struct city *) malloc(CITY_N * sizeof(struct city));
-	int *order = (int *) malloc(CITY_N * sizeof(int));
-	float avgResult = 0.0f;
-	double avgRuntime = 0.0f;
-
 	if (argc < 2) {
 		printf("Usage: ./tsp inputFile\n");
 		exit(-1);
 	}
-	readFile(argv[1], cities);
+	readFile(argv[1]);
 
+	int *order = (int *) malloc(CITY_N * sizeof(int));
+	float avgResult = 0.0f;
+	double avgRuntime = 0.0f;
+
+	
 	for (int runs = 0; runs < NUMBER_RUNS; ++runs) {
 		for (int i = 0; i < CITY_N; ++i)
 			order[i] = i;
