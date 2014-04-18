@@ -208,7 +208,6 @@ public:
 	{
 		double t = TEMP_START;
 		long seed = (long) (time(NULL));
-		struct city *dCities;
 		struct permutation *currPerm = (struct permutation *) malloc(sizeof(struct permutation));
 		currPerm->order = new int [CITY_N];
 		struct permutation *allMinPerm = (struct permutation *) malloc(sizeof(struct permutation));
