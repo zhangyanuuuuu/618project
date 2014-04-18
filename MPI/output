@@ -1,0 +1,2239 @@
+mpirun -np 4 ./tsp ../benchmark/eil51.tsp
+# of cities : 51
+# of cities : 51
+# of cities : 51
+# of cities : 51
+Seed for 2 is 1397808944
+Initial path length: 1308
+Seed for 0 is 1397808942
+Initial path length: 1308
+Seed for 1 is 1397808943
+Initial path length: 1308
+Seed for 3 is 1397808945
+Initial path length: 1308
+rank 2 with current cost 1523
+min index is 2
+rank 2 with current cost 1688
+min index is 0
+rank 0 with current cost 1705
+global_cost 0 is 1705
+global cost 1 is 1708
+global_cost 0 is 1705
+global cost 2 is 1523
+global_cost 0 is 1705
+global cost 3 is 1674
+min index is 2
+
+T = 20
+Path Length = 1523
+Successful Moves: 1021
+
+rank 0 with current cost 1496
+global_cost 0 is 1496
+global cost 1 is 1718
+global_cost 0 is 1496
+global cost 2 is 1688
+global_cost 0 is 1496
+global cost 3 is 1707
+min index is 0
+
+T = 19
+Path Length = 1496
+Successful Moves: 1021
+
+rank 1 with current cost 1708
+min index is 2
+rank 1 with current cost 1718
+min index is 0
+rank 3 with current cost 1674
+min index is 2
+rank 3 with current cost 1707
+min index is 0
+rank 0 with current cost 1444
+global_cost 0 is 1444
+global cost 1 is 1684
+global_cost 0 is 1444
+global cost 2 is 1614
+global_cost 0 is 1444
+global cost 3 is 1706
+min index is 0
+
+T = 18.05
+Path Length = 1444
+Successful Moves: 1021
+
+rank 3 with current cost 1706
+min index is 0
+rank 1 with current cost 1684
+min index is 0
+rank 2 with current cost 1614
+min index is 0
+rank 3 with current cost 1718
+min index is 0
+rank 1 with current cost 1688
+min index is 0
+rank 0 with current cost 1513
+global_cost 0 is 1513
+global cost 1 is 1688
+global_cost 0 is 1513
+global cost 2 is 1525
+global_cost 0 is 1513
+global cost 3 is 1718
+min index is 0
+
+T = 17.1475
+Path Length = 1513
+Successful Moves: 1021
+
+rank 2 with current cost 1525
+min index is 0
+rank 0 with current cost 1665
+global_cost 0 is 1665
+global cost 1 is 1541
+global_cost 0 is 1665
+global cost 2 is 1513
+global_cost 0 is 1665
+global cost 3 is 1565
+min index is 2
+
+T = 16.2901
+Path Length = 1513
+Successful Moves: 1021
+
+rank 0 with current cost 1766
+global_cost 0 is 1766
+global cost 1 is 1419
+global_cost 0 is 1766
+global cost 2 is 1542
+global_cost 0 is 1766
+global cost 3 is 1536
+min index is 1
+
+T = 15.4756
+Path Length = 1419
+Successful Moves: 1021
+
+rank 3 with current cost 1565
+min index is 2
+rank 3 with current cost 1536
+min index is 1
+rank 1 with current cost 1541
+min index is 2
+rank 1 with current cost 1419
+min index is 1
+rank 2 with current cost 1513
+min index is 2
+rank 2 with current cost 1542
+min index is 1
+rank 1 with current cost 1555
+min index is 3
+rank 0 with current cost 1623
+global_cost 0 is 1623
+global cost 1 is 1555
+global_cost 0 is 1623
+global cost 2 is 1665
+global_cost 0 is 1623
+global cost 3 is 1533
+min index is 3
+
+T = 14.7018
+Path Length = 1533
+Successful Moves: 1021
+
+rank 3 with current cost 1533
+min index is 3
+rank 2 with current cost 1665
+min index is 3
+rank 2 with current cost 1621
+min index is 1
+rank 3 with current cost 1800
+min index is 1
+rank 1 with current cost 1515
+min index is 1
+rank 0 with current cost 1643
+global_cost 0 is 1643
+global cost 1 is 1515
+global_cost 0 is 1643
+global cost 2 is 1621
+global_cost 0 is 1643
+global cost 3 is 1800
+min index is 1
+
+T = 13.9667
+Path Length = 1515
+Successful Moves: 1021
+
+rank 2 with current cost 1683
+min index is 1
+rank 3 with current cost 1559
+min index is 1
+rank 1 with current cost 1492
+min index is 1
+rank 0 with current cost 1645
+global_cost 0 is 1645
+global cost 1 is 1492
+global_cost 0 is 1645
+global cost 2 is 1683
+global_cost 0 is 1645
+global cost 3 is 1559
+min index is 1
+
+T = 13.2684
+Path Length = 1492
+Successful Moves: 1021
+
+rank 1 with current cost 1366
+rank 2 with current cost 1577
+rank 3 with current cost 1681
+rank 0 with current cost 1753
+global_cost 0 is 1753
+global cost 1 is 1366
+global_cost 0 is 1753
+global cost 2 is 1577
+global_cost 0 is 1753
+global cost 3 is 1681
+min index is 1
+
+T = 12.605
+Path Length = 1366
+Successful Moves: 1021
+
+rank 0 with current cost 1513
+global_cost 0 is 1513
+global cost 1 is 1480
+global_cost 0 is 1513
+global cost 2 is 1740
+global_cost 0 is 1513
+global cost 3 is 1716
+min index is 1
+
+T = 11.9747
+Path Length = 1480
+Successful Moves: 1021
+
+min index is 1
+rank 1 with current cost 1480
+min index is 1
+min index is 1
+rank 2 with current cost 1740
+min index is 1
+min index is 1
+rank 3 with current cost 1716
+min index is 1
+rank 2 with current cost 1646
+min index is 0
+rank 0 with current cost 1452
+global_cost 0 is 1452
+global cost 1 is 1509
+global_cost 0 is 1452
+global cost 2 is 1646
+global_cost 0 is 1452
+global cost 3 is 1569
+min index is 0
+
+T = 11.376
+Path Length = 1452
+Successful Moves: 1021
+
+rank 1 with current cost 1509
+min index is 0
+rank 3 with current cost 1569
+min index is 0
+rank 2 with current cost 1730
+min index is 1
+rank 0 with current cost 1522
+global_cost 0 is 1522
+global cost 1 is 1469
+global_cost 0 is 1522
+global cost 2 is 1730
+global_cost 0 is 1522
+global cost 3 is 1544
+min index is 1
+
+T = 10.8072
+Path Length = 1469
+Successful Moves: 1021
+
+rank 3 with current cost 1544
+min index is 1
+rank 1 with current cost 1469
+min index is 1
+rank 3 with current cost 1584
+min index is 2
+rank 0 with current cost 1577
+global_cost 0 is 1577
+global cost 1 is 1609
+global_cost 0 is 1577
+global cost 2 is 1563
+global_cost 0 is 1577
+global cost 3 is 1584
+min index is 2
+
+T = 10.2668
+Path Length = 1563
+Successful Moves: 1021
+
+rank 2 with current cost 1563
+min index is 2
+rank 1 with current cost 1609
+min index is 2
+rank 0 with current cost 1641
+global_cost 0 is 1641
+global cost 1 is 1607
+global_cost 0 is 1641
+global cost 2 is 1430
+global_cost 0 is 1641
+global cost 3 is 1571
+min index is 2
+
+T = 9.7535
+Path Length = 1430
+Successful Moves: 1021
+
+rank 1 with current cost 1607
+min index is 2
+rank 2 with current cost 1430
+min index is 2
+rank 3 with current cost 1571
+min index is 2
+rank 3 with current cost 1551
+min index is 0
+rank 1 with current cost 1689
+min index is 0
+rank 2 with current cost 1554
+min index is 0
+rank 0 with current cost 1458
+global_cost 0 is 1458
+global cost 1 is 1689
+global_cost 0 is 1458
+global cost 2 is 1554
+global_cost 0 is 1458
+global cost 3 is 1551
+min index is 0
+
+T = 9.26582
+Path Length = 1458
+Successful Moves: 1021
+
+rank 3 with current cost 1447
+min index is 3
+rank 3 with current cost 1559
+rank 1 with current cost 1667
+min index is 3
+rank 1 with current cost 1691
+rank 2 with current cost 1580
+min index is 3
+rank 0 with current cost 1572
+global_cost 0 is 1572
+global cost 1 is 1667
+global_cost 0 is 1572
+global cost 2 is 1580
+global_cost 0 is 1572
+global cost 3 is 1447
+min index is 3
+
+T = 8.80253
+Path Length = 1447
+Successful Moves: 1021
+
+rank 0 with current cost 1530
+rank 2 with current cost 1578
+min index is 0
+min index is 0
+min index is 0
+global_cost 0 is 1530
+global cost 1 is 1691
+global_cost 0 is 1530
+global cost 2 is 1578
+global_cost 0 is 1530
+global cost 3 is 1559
+min index is 0
+
+T = 8.36241
+Path Length = 1530
+Successful Moves: 1021
+
+rank 1 with current cost 1553
+min index is 3
+rank 1 with current cost 1549
+rank 2 with current cost 1602
+min index is 3
+rank 3 with current cost 1525
+min index is 3
+rank 3 with current cost 1497
+rank 0 with current cost 1588
+global_cost 0 is 1588
+global cost 1 is 1553
+global_cost 0 is 1588
+global cost 2 is 1602
+global_cost 0 is 1588
+global cost 3 is 1525
+min index is 3
+
+T = 7.94429
+Path Length = 1525
+Successful Moves: 1021
+
+min index is 0
+min index is 0
+rank 2 with current cost 1594
+min index is 0
+rank 0 with current cost 1418
+global_cost 0 is 1418
+global cost 1 is 1549
+global_cost 0 is 1418
+global cost 2 is 1594
+global_cost 0 is 1418
+global cost 3 is 1497
+min index is 0
+
+T = 7.54707
+Path Length = 1418
+Successful Moves: 1021
+
+rank 1 with current cost 1561
+min index is 0
+rank 0 with current cost 1362
+global_cost 0 is 1362
+global cost 1 is 1561
+global_cost 0 is 1362
+global cost 2 is 1496
+global_cost 0 is 1362
+global cost 3 is 1554
+min index is 0
+
+T = 7.16972
+Path Length = 1362
+Successful Moves: 1021
+
+rank 2 with current cost 1496
+min index is 0
+rank 3 with current cost 1554
+min index is 0
+rank 1 with current cost 1715
+rank 3 with current cost 1454
+rank 2 with current cost 1556
+rank 0 with current cost 1461
+global_cost 0 is 1461
+global cost 1 is 1715
+global_cost 0 is 1461
+global cost 2 is 1556
+global_cost 0 is 1461
+global cost 3 is 1454
+min index is 3
+
+T = 6.81123
+Path Length = 1454
+Successful Moves: 1021
+
+rank 0 with current cost 1610
+min index is 3
+rank 3 with current cost 1576
+min index is 3
+rank 1 with current cost 1516
+min index is 3
+min index is 2
+global_cost 0 is 1610
+global cost 1 is 1516
+global_cost 0 is 1610
+global cost 2 is 1322
+global_cost 0 is 1610
+global cost 3 is 1576
+min index is 2
+
+T = 6.47067
+Path Length = 1322
+Successful Moves: 1021
+
+min index is 2
+rank 2 with current cost 1322
+min index is 2
+rank 2 with current cost 1625
+min index is 0
+rank 3 with current cost 1563
+min index is 0
+rank 1 with current cost 1613
+min index is 0
+rank 0 with current cost 1388
+global_cost 0 is 1388
+global cost 1 is 1613
+global_cost 0 is 1388
+global cost 2 is 1625
+global_cost 0 is 1388
+global cost 3 is 1563
+min index is 0
+
+T = 6.14714
+Path Length = 1388
+Successful Moves: 1021
+
+rank 0 with current cost 1666
+global_cost 0 is 1666
+global cost 1 is 1664
+global_cost 0 is 1666
+global cost 2 is 1489
+global_cost 0 is 1666
+global cost 3 is 1489
+min index is 2
+
+T = 5.83978
+Path Length = 1489
+Successful Moves: 1021
+
+rank 0 with current cost 1646
+rank 2 with current cost 1489
+min index is 2
+rank 3 with current cost 1489
+min index is 2
+rank 3 with current cost 1545
+rank 1 with current cost 1664
+min index is 2
+rank 1 with current cost 1504
+global_cost 0 is 1646
+global cost 1 is 1504
+global_cost 0 is 1646
+global cost 2 is 1467
+global_cost 0 is 1646
+global cost 3 is 1545
+min index is 2
+
+T = 5.54779
+Path Length = 1467
+Successful Moves: 1021
+
+rank 2 with current cost 1467
+min index is 2
+min index is 2
+min index is 2
+rank 3 with current cost 1720
+min index is 1
+rank 0 with current cost 1527
+global_cost 0 is 1527
+global cost 1 is 1325
+global_cost 0 is 1527
+global cost 2 is 1678
+global_cost 0 is 1527
+global cost 3 is 1720
+min index is 1
+
+T = 5.2704
+Path Length = 1325
+Successful Moves: 1021
+
+rank 2 with current cost 1678
+min index is 1
+rank 1 with current cost 1325
+min index is 1
+rank 1 with current cost 1487
+min index is 3
+rank 2 with current cost 1593
+min index is 3
+rank 3 with current cost 1352
+min index is 3
+rank 0 with current cost 1582
+global_cost 0 is 1582
+global cost 1 is 1487
+global_cost 0 is 1582
+global cost 2 is 1593
+global_cost 0 is 1582
+global cost 3 is 1352
+min index is 3
+
+T = 5.00688
+Path Length = 1352
+Successful Moves: 1021
+
+rank 1 with current cost 1355
+min index is 1
+rank 2 with current cost 1529
+min index is 1
+rank 3 with current cost 1544
+min index is 1
+rank 0 with current cost 1497
+global_cost 0 is 1497
+global cost 1 is 1355
+global_cost 0 is 1497
+global cost 2 is 1529
+global_cost 0 is 1497
+global cost 3 is 1544
+min index is 1
+
+T = 4.75654
+Path Length = 1355
+Successful Moves: 1021
+
+rank 0 with current cost 1573
+global_cost 0 is 1573
+global cost 1 is 1542
+global_cost 0 is 1573
+global cost 2 is 1616
+global_cost 0 is 1573
+global cost 3 is 1467
+min index is 3
+
+T = 4.51871
+Path Length = 1467
+Successful Moves: 1021
+
+rank 3 with current cost 1467
+min index is 3
+rank 1 with current cost 1542
+min index is 3
+rank 2 with current cost 1616
+min index is 3
+rank 0 with current cost 1647
+global_cost 0 is 1647
+global cost 1 is 1420
+global_cost 0 is 1647
+global cost 2 is 1426
+global_cost 0 is 1647
+global cost 3 is 1566
+min index is 1
+
+T = 4.29278
+Path Length = 1420
+Successful Moves: 1021
+
+rank 3 with current cost 1566
+min index is 1
+rank 1 with current cost 1420
+min index is 1
+rank 2 with current cost 1426
+min index is 1
+rank 1 with current cost 1432
+min index is 0
+rank 0 with current cost 1303
+global_cost 0 is 1303
+global cost 1 is 1432
+global_cost 0 is 1303
+global cost 2 is 1535
+global_cost 0 is 1303
+global cost 3 is 1381
+min index is 0
+
+T = 4.07814
+Path Length = 1303
+Successful Moves: 1021
+
+rank 3 with current cost 1381
+min index is 0
+rank 2 with current cost 1535
+min index is 0
+rank 3 with current cost 1524
+min index is 2
+rank 1 with current cost 1357
+min index is 2
+rank 0 with current cost 1432
+global_cost 0 is 1432
+global cost 1 is 1357
+global_cost 0 is 1432
+global cost 2 is 1252
+global_cost 0 is 1432
+global cost 3 is 1524
+min index is 2
+
+T = 3.87423
+Path Length = 1252
+Successful Moves: 1021
+
+rank 2 with current cost 1252
+min index is 2
+rank 1 with current cost 1408
+min index is 2
+rank 2 with current cost 1376
+min index is 2
+rank 0 with current cost 1448
+global_cost 0 is 1448
+global cost 1 is 1408
+global_cost 0 is 1448
+global cost 2 is 1376
+global_cost 0 is 1448
+global cost 3 is 1441
+min index is 2
+
+T = 3.68052
+Path Length = 1376
+Successful Moves: 1021
+
+rank 3 with current cost 1441
+min index is 2
+rank 3 with current cost 1378
+min index is 1
+rank 2 with current cost 1289
+min index is 1
+rank 0 with current cost 1493
+global_cost 0 is 1493
+global cost 1 is 1271
+global_cost 0 is 1493
+global cost 2 is 1289
+global_cost 0 is 1493
+global cost 3 is 1378
+min index is 1
+
+T = 3.49649
+Path Length = 1271
+Successful Moves: 1021
+
+rank 1 with current cost 1271
+min index is 1
+rank 3 with current cost 1534
+min index is 2
+rank 2 with current cost 1296
+min index is 2
+rank 0 with current cost 1498
+global_cost 0 is 1498
+global cost 1 is 1332
+global_cost 0 is 1498
+global cost 2 is 1296
+global_cost 0 is 1498
+global cost 3 is 1534
+min index is 2
+
+T = 3.32167
+Path Length = 1296
+Successful Moves: 1021
+
+rank 1 with current cost 1332
+min index is 2
+rank 0 with current cost 1332
+global_cost 0 is 1332
+global cost 1 is 1406
+global_cost 0 is 1332
+global cost 2 is 1411
+global_cost 0 is 1332
+global cost 3 is 1390
+min index is 0
+
+T = 3.15558
+Path Length = 1332
+Successful Moves: 1021
+
+rank 3 with current cost 1390
+min index is 0
+rank 2 with current cost 1411
+min index is 0
+rank 1 with current cost 1406
+min index is 0
+rank 3 with current cost 1318
+rank 1 with current cost 1495
+rank 0 with current cost 1489
+rank 2 with current cost 1381
+global_cost 0 is 1489
+global cost 1 is 1495
+global_cost 0 is 1489
+global cost 2 is 1381
+global_cost 0 is 1489
+global cost 3 is 1318
+min index is 3
+
+T = 2.99781
+Path Length = 1318
+Successful Moves: 1021
+
+rank 0 with current cost 1411
+min index is 3
+rank 1 with current cost 1451
+min index is 3
+rank 3 with current cost 1219
+min index is 3
+min index is 3
+global_cost 0 is 1411
+global cost 1 is 1451
+global_cost 0 is 1411
+global cost 2 is 1330
+global_cost 0 is 1411
+global cost 3 is 1219
+min index is 3
+
+T = 2.84791
+Path Length = 1219
+Successful Moves: 1021
+
+min index is 3
+rank 2 with current cost 1330
+min index is 3
+rank 3 with current cost 1305
+rank 0 with current cost 1330
+rank 1 with current cost 1297
+min index is 1
+global_cost 0 is 1330
+global cost 1 is 1297
+global_cost 0 is 1330
+global cost 2 is 1437
+global_cost 0 is 1330
+global cost 3 is 1305
+min index is 1
+
+T = 2.70552
+Path Length = 1297
+Successful Moves: 1021
+
+rank 2 with current cost 1437
+min index is 1
+min index is 1
+rank 1 with current cost 1149
+min index is 1
+rank 0 with current cost 1337
+global_cost 0 is 1337
+global cost 1 is 1149
+global_cost 0 is 1337
+global cost 2 is 1332
+global_cost 0 is 1337
+global cost 3 is 1273
+min index is 1
+
+T = 2.57024
+Path Length = 1149
+Successful Moves: 1021
+
+rank 2 with current cost 1332
+min index is 1
+rank 3 with current cost 1273
+min index is 1
+rank 2 with current cost 1349
+min index is 3
+rank 1 with current cost 1311
+min index is 3
+rank 0 with current cost 1368
+global_cost 0 is 1368
+global cost 1 is 1311
+global_cost 0 is 1368
+global cost 2 is 1349
+global_cost 0 is 1368
+global cost 3 is 1294
+min index is 3
+
+T = 2.44173
+Path Length = 1294
+Successful Moves: 1021
+
+rank 3 with current cost 1294
+min index is 3
+rank 0 with current cost 1481
+global_cost 0 is 1481
+global cost 1 is 1307
+global_cost 0 is 1481
+global cost 2 is 1186
+global_cost 0 is 1481
+global cost 3 is 1235
+min index is 2
+
+T = 2.31964
+Path Length = 1186
+Successful Moves: 1021
+
+rank 2 with current cost 1186
+min index is 2
+rank 1 with current cost 1307
+min index is 2
+rank 3 with current cost 1235
+min index is 2
+rank 2 with current cost 1124
+min index is 2
+rank 3 with current cost 1333
+min index is 2
+rank 1 with current cost 1234
+min index is 2
+rank 0 with current cost 1272
+global_cost 0 is 1272
+global cost 1 is 1234
+global_cost 0 is 1272
+global cost 2 is 1124
+global_cost 0 is 1272
+global cost 3 is 1333
+min index is 2
+
+T = 2.20366
+Path Length = 1124
+Successful Moves: 1021
+
+rank 0 with current cost 1271
+global_cost 0 is 1271
+global cost 1 is 1174
+global_cost 0 is 1271
+global cost 2 is 1348
+global_cost 0 is 1271
+global cost 3 is 1238
+min index is 1
+
+T = 2.09348
+Path Length = 1174
+Successful Moves: 1021
+
+rank 3 with current cost 1238
+min index is 1
+rank 1 with current cost 1174
+min index is 1
+rank 2 with current cost 1348
+min index is 1
+rank 0 with current cost 1373
+global_cost 0 is 1373
+global cost 1 is 1344
+global_cost 0 is 1373
+global cost 2 is 1139
+global_cost 0 is 1373
+global cost 3 is 1327
+min index is 2
+
+T = 1.98881
+Path Length = 1139
+Successful Moves: 1021
+
+rank 3 with current cost 1327
+min index is 2
+rank 1 with current cost 1344
+min index is 2
+rank 2 with current cost 1139
+min index is 2
+rank 1 with current cost 1134
+min index is 1
+rank 0 with current cost 1286
+global_cost 0 is 1286
+global cost 1 is 1134
+global_cost 0 is 1286
+global cost 2 is 1254
+global_cost 0 is 1286
+global cost 3 is 1375
+min index is 1
+
+T = 1.88936
+Path Length = 1134
+Successful Moves: 1021
+
+rank 3 with current cost 1375
+min index is 1
+rank 2 with current cost 1254
+min index is 1
+rank 0 with current cost 1258
+global_cost 0 is 1258
+global cost 1 is 1067
+global_cost 0 is 1258
+global cost 2 is 1140
+global_cost 0 is 1258
+global cost 3 is 1289
+min index is 1
+
+T = 1.7949
+Path Length = 1067
+Successful Moves: 1021
+
+rank 2 with current cost 1140
+min index is 1
+rank 3 with current cost 1289
+min index is 1
+rank 1 with current cost 1067
+min index is 1
+rank 2 with current cost 1244
+min index is 1
+rank 3 with current cost 1093
+min index is 1
+rank 0 with current cost 1295
+global_cost 0 is 1295
+global cost 1 is 1032
+global_cost 0 is 1295
+global cost 2 is 1244
+global_cost 0 is 1295
+global cost 3 is 1093
+min index is 1
+
+T = 1.70515
+Path Length = 1032
+Successful Moves: 1021
+
+rank 1 with current cost 1032
+min index is 1
+rank 0 with current cost 1194
+global_cost 0 is 1194
+global cost 1 is 1089
+global_cost 0 is 1194
+global cost 2 is 1204
+global_cost 0 is 1194
+global cost 3 is 1042
+min index is 3
+
+T = 1.61989
+Path Length = 1042
+Successful Moves: 1021
+
+rank 2 with current cost 1204
+min index is 3
+rank 3 with current cost 1042
+min index is 3
+rank 1 with current cost 1089
+min index is 3
+rank 3 with current cost 1150
+min index is 1
+rank 0 with current cost 1163
+global_cost 0 is 1163
+global cost 1 is 1061
+global_cost 0 is 1163
+global cost 2 is 1119
+global_cost 0 is 1163
+global cost 3 is 1150
+min index is 1
+
+T = 1.5389
+Path Length = 1061
+Successful Moves: 1021
+
+rank 2 with current cost 1119
+min index is 1
+rank 1 with current cost 1061
+min index is 1
+rank 1 with current cost 1179
+min index is 2
+rank 2 with current cost 1100
+min index is 2
+rank 3 with current cost 1200
+min index is 2
+rank 0 with current cost 1159
+global_cost 0 is 1159
+global cost 1 is 1179
+global_cost 0 is 1159
+global cost 2 is 1100
+global_cost 0 is 1159
+global cost 3 is 1200
+min index is 2
+
+T = 1.46195
+Path Length = 1100
+Successful Moves: 1021
+
+rank 0 with current cost 1019
+global_cost 0 is 1019
+global cost 1 is 1059
+global_cost 0 is 1019
+global cost 2 is 1038
+global_cost 0 is 1019
+global cost 3 is 944
+min index is 3
+
+T = 1.38886
+Path Length = 944
+Successful Moves: 1021
+
+rank 1 with current cost 1059
+min index is 3
+rank 2 with current cost 1038
+min index is 3
+rank 3 with current cost 944
+min index is 3
+rank 0 with current cost 1133
+global_cost 0 is 1133
+global cost 1 is 1000
+global_cost 0 is 1133
+global cost 2 is 1153
+global_cost 0 is 1133
+global cost 3 is 1000
+min index is 1
+
+T = 1.31941
+Path Length = 1000
+Successful Moves: 1021
+
+rank 1 with current cost 1000
+min index is 1
+rank 2 with current cost 1153
+min index is 1
+rank 3 with current cost 1000
+min index is 1
+rank 1 with current cost 1019
+rank 3 with current cost 1117
+rank 0 with current cost 1111
+rank 2 with current cost 985
+min index is 2
+min index is 2
+min index is 2
+global_cost 0 is 1111
+global cost 1 is 1019
+global_cost 0 is 1111
+global cost 2 is 985
+global_cost 0 is 1111
+global cost 3 is 1117
+min index is 2
+
+T = 1.25344
+Path Length = 985
+Successful Moves: 1021
+
+rank 1 with current cost 1149
+min index is 3
+rank 2 with current cost 1015
+min index is 3
+rank 3 with current cost 971
+min index is 3
+rank 0 with current cost 1202
+global_cost 0 is 1202
+global cost 1 is 1149
+global_cost 0 is 1202
+global cost 2 is 1015
+global_cost 0 is 1202
+global cost 3 is 971
+min index is 3
+
+T = 1.19077
+Path Length = 971
+Successful Moves: 1021
+
+rank 0 with current cost 932
+rank 3 with current cost 972
+rank 1 with current cost 1025
+min index is 2
+rank 2 with current cost 919
+min index is 2
+min index is 2
+global_cost 0 is 932
+global cost 1 is 1025
+global_cost 0 is 932
+global cost 2 is 919
+global_cost 0 is 932
+global cost 3 is 972
+min index is 2
+
+T = 1.13123
+Path Length = 919
+Successful Moves: 1021
+
+rank 1 with current cost 803
+rank 3 with current cost 1034
+rank 0 with current cost 951
+global_cost 0 is 951
+global cost 1 is 803
+global_cost 0 is 951
+global cost 2 is 992
+global_cost 0 is 951
+global cost 3 is 1034
+min index is 1
+
+T = 1.07467
+Path Length = 803
+Successful Moves: 1021
+
+min index is 1
+rank 2 with current cost 992
+min index is 1
+min index is 1
+rank 0 with current cost 1041
+rank 3 with current cost 918
+rank 2 with current cost 900
+rank 1 with current cost 883
+min index is 1
+min index is 1
+global_cost 0 is 1041
+global cost 1 is 883
+global_cost 0 is 1041
+global cost 2 is 900
+global_cost 0 is 1041
+global cost 3 is 918
+min index is 1
+
+T = 1.02094
+Path Length = 883
+Successful Moves: 1021
+
+min index is 1
+rank 3 with current cost 916
+rank 1 with current cost 823
+rank 2 with current cost 881
+min index is 1
+min index is 1
+rank 0 with current cost 923
+global_cost 0 is 923
+global cost 1 is 823
+global_cost 0 is 923
+global cost 2 is 881
+global_cost 0 is 923
+global cost 3 is 916
+min index is 1
+
+T = 0.969891
+Path Length = 823
+Successful Moves: 1021
+
+min index is 1
+rank 2 with current cost 906
+min index is 3
+rank 0 with current cost 824
+global_cost 0 is 824
+global cost 1 is 869
+global_cost 0 is 824
+global cost 2 is 906
+global_cost 0 is 824
+global cost 3 is 802
+min index is 3
+
+T = 0.921396
+Path Length = 802
+Successful Moves: 1021
+
+rank 3 with current cost 802
+min index is 3
+rank 1 with current cost 869
+min index is 3
+rank 0 with current cost 796
+rank 3 with current cost 823
+rank 1 with current cost 916
+rank 2 with current cost 864
+min index is 0
+min index is 0
+global_cost 0 is 796
+global cost 1 is 916
+global_cost 0 is 796
+global cost 2 is 864
+global_cost 0 is 796
+global cost 3 is 823
+min index is 0
+
+T = 0.875326
+Path Length = 796
+Successful Moves: 1021
+
+min index is 0
+rank 1 with current cost 824
+min index is 2
+rank 0 with current cost 955
+global_cost 0 is 955
+global cost 1 is 824
+global_cost 0 is 955
+global cost 2 is 782
+global_cost 0 is 955
+global cost 3 is 847
+min index is 2
+
+T = 0.83156
+Path Length = 782
+Successful Moves: 1021
+
+rank 2 with current cost 782
+min index is 2
+rank 3 with current cost 847
+min index is 2
+rank 3 with current cost 747
+min index is 3
+rank 1 with current cost 818
+min index is 3
+rank 0 with current cost 850
+global_cost 0 is 850
+global cost 1 is 818
+global_cost 0 is 850
+global cost 2 is 855
+global_cost 0 is 850
+global cost 3 is 747
+min index is 3
+
+T = 0.789982
+Path Length = 747
+Successful Moves: 1021
+
+rank 2 with current cost 855
+min index is 3
+rank 3 with current cost 766
+min index is 3
+rank 1 with current cost 895
+min index is 3
+rank 0 with current cost 815
+global_cost 0 is 815
+global cost 1 is 895
+global_cost 0 is 815
+global cost 2 is 877
+global_cost 0 is 815
+global cost 3 is 766
+min index is 3
+
+T = 0.750483
+Path Length = 766
+Successful Moves: 1021
+
+rank 2 with current cost 877
+min index is 3
+rank 0 with current cost 760
+rank 3 with current cost 682
+rank 1 with current cost 760
+global_cost 0 is 760
+global cost 1 is 760
+global_cost 0 is 760
+global cost 2 is 709
+global_cost 0 is 760
+global cost 3 is 682
+min index is 3
+
+T = 0.712959
+Path Length = 682
+Successful Moves: 1021
+
+min index is 3
+min index is 3
+rank 2 with current cost 709
+min index is 3
+rank 1 with current cost 773
+rank 0 with current cost 823
+rank 2 with current cost 737
+rank 3 with current cost 771
+min index is 2
+min index is 2
+min index is 2
+global_cost 0 is 823
+global cost 1 is 773
+global_cost 0 is 823
+global cost 2 is 737
+global_cost 0 is 823
+global cost 3 is 771
+min index is 2
+
+T = 0.677311
+Path Length = 737
+Successful Moves: 1021
+
+rank 2 with current cost 811
+rank 1 with current cost 636
+rank 3 with current cost 682
+rank 0 with current cost 728
+min index is 1
+min index is 1
+global_cost 0 is 728
+global cost 1 is 636
+global_cost 0 is 728
+global cost 2 is 811
+global_cost 0 is 728
+global cost 3 is 682
+min index is 1
+
+T = 0.643445
+Path Length = 636
+Successful Moves: 1021
+
+min index is 1
+rank 3 with current cost 724
+rank 0 with current cost 738
+rank 1 with current cost 719
+rank 2 with current cost 685
+min index is 2
+min index is 2
+min index is 2
+global_cost 0 is 738
+global cost 1 is 719
+global_cost 0 is 738
+global cost 2 is 685
+global_cost 0 is 738
+global cost 3 is 724
+min index is 2
+
+T = 0.611273
+Path Length = 685
+Successful Moves: 1021
+
+rank 0 with current cost 658
+global_cost 0 is 658
+global cost 1 is 677
+global_cost 0 is 658
+global cost 2 is 703
+global_cost 0 is 658
+global cost 3 is 715
+min index is 0
+
+T = 0.580709
+Path Length = 658
+Successful Moves: 1021
+rank 1 with current cost 677
+min index is 0
+rank 3 with current cost 715
+min index is 0
+rank 2 with current cost 703
+min index is 0
+
+rank 1 with current cost 655
+rank 3 with current cost 712
+rank 0 with current cost 686
+rank 2 with current cost 694
+min index is 1
+min index is 1
+min index is 1
+global_cost 0 is 686
+global cost 1 is 655
+global_cost 0 is 686
+global cost 2 is 694
+global_cost 0 is 686
+global cost 3 is 712
+min index is 1
+
+T = 0.551674
+Path Length = 655
+Successful Moves: 1021
+
+rank 1 with current cost 734
+rank 3 with current cost 627
+rank 0 with current cost 650
+min index is 2
+rank 2 with current cost 567
+min index is 2
+min index is 2
+global_cost 0 is 650
+global cost 1 is 734
+global_cost 0 is 650
+global cost 2 is 567
+global_cost 0 is 650
+global cost 3 is 627
+min index is 2
+
+T = 0.52409
+Path Length = 567
+Successful Moves: 1021
+
+rank 0 with current cost 620
+rank 1 with current cost 717
+global_cost 0 is 620
+global cost 1 is 717
+global_cost 0 is 620
+global cost 2 is 600
+global_cost 0 is 620
+global cost 3 is 642
+min index is 2
+
+T = 0.497886
+Path Length = 600
+Successful Moves: 1021
+
+rank 3 with current cost 642
+min index is 2
+rank 2 with current cost 600
+min index is 2
+min index is 2
+rank 0 with current cost 688
+rank 3 with current cost 613
+rank 2 with current cost 617
+min index is 3
+rank 1 with current cost 617
+min index is 3
+global_cost 0 is 688
+global cost 1 is 617
+global_cost 0 is 688
+global cost 2 is 617
+global_cost 0 is 688
+global cost 3 is 613
+min index is 3
+
+T = 0.472991
+Path Length = 613
+Successful Moves: 1021
+
+min index is 3
+rank 1 with current cost 616
+rank 3 with current cost 579
+min index is 3
+min index is 3
+rank 0 with current cost 637
+global_cost 0 is 637
+global cost 1 is 616
+global_cost 0 is 637
+global cost 2 is 617
+global_cost 0 is 637
+global cost 3 is 579
+min index is 3
+
+T = 0.449342
+Path Length = 579
+Successful Moves: 1021
+
+rank 2 with current cost 617
+min index is 3
+rank 3 with current cost 557
+rank 0 with current cost 580
+rank 1 with current cost 614
+rank 2 with current cost 566
+min index is 3
+min index is 3
+global_cost 0 is 580
+global cost 1 is 614
+global_cost 0 is 580
+global cost 2 is 566
+global_cost 0 is 580
+global cost 3 is 557
+min index is 3
+
+T = 0.426875
+Path Length = 557
+Successful Moves: 1021
+
+min index is 3
+rank 1 with current cost 593
+rank 0 with current cost 514
+global_cost 0 is 514
+global cost 1 is 593
+global_cost 0 is 514
+global cost 2 is 588
+global_cost 0 is 514
+global cost 3 is 530
+min index is 0
+
+T = 0.405531
+Path Length = 514
+Successful Moves: 1021
+
+rank 2 with current cost 588
+min index is 0
+rank 3 with current cost 530
+min index is 0
+min index is 0
+rank 0 with current cost 540
+rank 3 with current cost 594
+min index is 1
+rank 1 with current cost 510
+min index is 1
+rank 2 with current cost 557
+min index is 1
+global_cost 0 is 540
+global cost 1 is 510
+global_cost 0 is 540
+global cost 2 is 557
+global_cost 0 is 540
+global cost 3 is 594
+min index is 1
+
+T = 0.385254
+Path Length = 510
+Successful Moves: 1021
+
+rank 0 with current cost 573
+rank 3 with current cost 544
+min index is 1
+rank 1 with current cost 542
+min index is 1
+global_cost 0 is 573
+global cost 1 is 542
+global_cost 0 is 573
+global cost 2 is 580
+global_cost 0 is 573
+global cost 3 is 544
+min index is 1
+
+T = 0.365992
+Path Length = 542
+Successful Moves: 1021
+
+rank 2 with current cost 580
+min index is 1
+rank 0 with current cost 517
+rank 1 with current cost 600
+rank 3 with current cost 500
+rank 2 with current cost 559
+min index is 3
+global_cost 0 is 517
+global cost 1 is 600
+global_cost 0 is 517
+global cost 2 is 559
+global_cost 0 is 517
+global cost 3 is 500
+min index is 3
+
+T = 0.347692
+Path Length = 500
+Successful Moves: 1021
+
+min index is 3
+min index is 3
+rank 1 with current cost 531
+rank 3 with current cost 501
+rank 0 with current cost 530
+global_cost 0 is 530
+global cost 1 is 531
+global_cost 0 is 530
+global cost 2 is 562
+global_cost 0 is 530
+global cost 3 is 501
+min index is 3
+
+T = 0.330307
+Path Length = 501
+Successful Moves: 1021
+
+min index is 3
+min index is 3
+rank 2 with current cost 562
+min index is 3
+rank 3 with current cost 519
+rank 2 with current cost 483
+rank 0 with current cost 516
+min index is 2
+rank 1 with current cost 486
+min index is 2
+min index is 2
+global_cost 0 is 516
+global cost 1 is 486
+global_cost 0 is 516
+global cost 2 is 483
+global_cost 0 is 516
+global cost 3 is 519
+min index is 2
+
+T = 0.313792
+Path Length = 483
+Successful Moves: 1021
+
+rank 3 with current cost 506
+rank 1 with current cost 468
+rank 2 with current cost 526
+min index is 1
+rank 0 with current cost 503
+global_cost 0 is 503
+global cost 1 is 468
+global_cost 0 is 503
+global cost 2 is 526
+global_cost 0 is 503
+global cost 3 is 506
+min index is 1
+
+T = 0.298103
+Path Length = 468
+Successful Moves: 1021
+
+min index is 1
+min index is 1
+rank 1 with current cost 483
+rank 0 with current cost 532
+rank 3 with current cost 494
+min index is 2
+rank 2 with current cost 480
+min index is 2
+min index is 2
+global_cost 0 is 532
+global cost 1 is 483
+global_cost 0 is 532
+global cost 2 is 480
+global_cost 0 is 532
+global cost 3 is 494
+min index is 2
+
+T = 0.283197
+Path Length = 480
+Successful Moves: 1021
+
+rank 1 with current cost 528
+rank 3 with current cost 497
+rank 0 with current cost 505
+global_cost 0 is 505
+global cost 1 is 528
+global_cost 0 is 505
+global cost 2 is 532
+global_cost 0 is 505
+global cost 3 is 497
+min index is 3
+
+T = 0.269038
+Path Length = 497
+Successful Moves: 1021
+
+min index is 3
+rank 2 with current cost 532
+min index is 3
+min index is 3
+rank 1 with current cost 463
+rank 0 with current cost 465
+rank 3 with current cost 487
+rank 2 with current cost 471
+min index is 1
+min index is 1
+global_cost 0 is 465
+global cost 1 is 463
+global_cost 0 is 465
+global cost 2 is 471
+global_cost 0 is 465
+global cost 3 is 487
+min index is 1
+
+T = 0.255586
+Path Length = 463
+Successful Moves: 1021
+
+min index is 1
+rank 3 with current cost 474
+rank 1 with current cost 487
+rank 0 with current cost 469
+min index is 0
+rank 2 with current cost 485
+min index is 0
+min index is 0
+global_cost 0 is 469
+global cost 1 is 487
+global_cost 0 is 469
+global cost 2 is 485
+global_cost 0 is 469
+global cost 3 is 474
+min index is 0
+
+T = 0.242806
+Path Length = 469
+Successful Moves: 1021
+
+rank 0 with current cost 473
+rank 3 with current cost 479
+global_cost 0 is 473
+global cost 1 is 458
+global_cost 0 is 473
+global cost 2 is 493
+global_cost 0 is 473
+global cost 3 is 479
+min index is 1
+
+T = 0.230666
+Path Length = 458
+Successful Moves: 1021
+
+rank 1 with current cost 458
+min index is 1
+rank 2 with current cost 493
+min index is 1
+min index is 1
+rank 0 with current cost 445
+rank 3 with current cost 459
+rank 1 with current cost 476
+rank 2 with current cost 486
+min index is 0
+global_cost 0 is 445
+global cost 1 is 476
+global_cost 0 is 445
+global cost 2 is 486
+global_cost 0 is 445
+global cost 3 is 459
+min index is 0
+
+T = 0.219133
+Path Length = 445
+Successful Moves: 1021
+
+min index is 0
+min index is 0
+rank 0 with current cost 484
+rank 3 with current cost 467
+global_cost 0 is 484
+global cost 1 is 470
+global_cost 0 is 484
+global cost 2 is 463
+global_cost 0 is 484
+global cost 3 is 467
+min index is 2
+
+T = 0.208176
+Path Length = 463
+Successful Moves: 1021
+
+rank 2 with current cost 463
+min index is 2
+rank 1 with current cost 470
+min index is 2
+min index is 2
+rank 0 with current cost 473
+rank 1 with current cost 449
+rank 3 with current cost 448
+global_cost 0 is 473
+global cost 1 is 449
+global_cost 0 is 473
+global cost 2 is 437
+global_cost 0 is 473
+global cost 3 is 448
+min index is 2
+
+T = 0.197767
+Path Length = 437
+Successful Moves: 1021
+
+min index is 2
+rank 2 with current cost 437
+min index is 2
+min index is 2
+rank 1 with current cost 454
+rank 0 with current cost 476
+rank 2 with current cost 450
+min index is 3
+min index is 3
+rank 3 with current cost 436
+min index is 3
+global_cost 0 is 476
+global cost 1 is 454
+global_cost 0 is 476
+global cost 2 is 450
+global_cost 0 is 476
+global cost 3 is 436
+min index is 3
+
+T = 0.187879
+Path Length = 436
+Successful Moves: 1021
+
+rank 1 with current cost 445
+rank 3 with current cost 450
+rank 2 with current cost 439
+min index is 2
+min index is 2
+min index is 2
+rank 0 with current cost 442
+global_cost 0 is 442
+global cost 1 is 445
+global_cost 0 is 442
+global cost 2 is 439
+global_cost 0 is 442
+global cost 3 is 450
+min index is 2
+
+T = 0.178485
+Path Length = 439
+Successful Moves: 1021
+
+rank 3 with current cost 436
+rank 0 with current cost 445
+rank 2 with current cost 452
+global_cost 0 is 445
+global cost 1 is 464
+global_cost 0 is 445
+global cost 2 is 452
+global_cost 0 is 445
+global cost 3 is 436
+min index is 3
+
+T = 0.169561
+Path Length = 436
+Successful Moves: 1021
+
+rank 1 with current cost 464
+min index is 3
+min index is 3
+min index is 3
+rank 0 with current cost 454
+rank 3 with current cost 430
+rank 2 with current cost 443
+min index is 3
+rank 1 with current cost 436
+min index is 3
+min index is 3
+global_cost 0 is 454
+global cost 1 is 436
+global_cost 0 is 454
+global cost 2 is 443
+global_cost 0 is 454
+global cost 3 is 430
+min index is 3
+
+T = 0.161083
+Path Length = 430
+Successful Moves: 1021
+
+rank 0 with current cost 464
+rank 1 with current cost 435
+rank 2 with current cost 448
+rank 3 with current cost 439
+min index is 1
+min index is 1
+min index is 1
+global_cost 0 is 464
+global cost 1 is 435
+global_cost 0 is 464
+global cost 2 is 448
+global_cost 0 is 464
+global cost 3 is 439
+min index is 1
+
+T = 0.153029
+Path Length = 435
+Successful Moves: 1021
+
+rank 1 with current cost 446
+rank 3 with current cost 452
+rank 2 with current cost 441
+min index is 0
+rank 0 with current cost 434
+global_cost 0 is 434
+global cost 1 is 446
+global_cost 0 is 434
+global cost 2 is 441
+global_cost 0 is 434
+global cost 3 is 452
+min index is 0
+
+T = 0.145377
+Path Length = 434
+Successful Moves: 1021
+
+min index is 0
+min index is 0
+rank 0 with current cost 432
+rank 3 with current cost 436
+rank 1 with current cost 445
+min index is 0
+global_cost 0 is 432
+global cost 1 is 445
+global_cost 0 is 432
+global cost 2 is 447
+global_cost 0 is 432
+global cost 3 is 436
+min index is 0
+
+T = 0.138108
+Path Length = 432
+Successful Moves: 1021
+
+rank 2 with current cost 447
+min index is 0
+min index is 0
+rank 3 with current cost 432
+rank 1 with current cost 428
+rank 2 with current cost 439
+min index is 1
+min index is 1
+min index is 1
+rank 0 with current cost 441
+global_cost 0 is 441
+global cost 1 is 428
+global_cost 0 is 441
+global cost 2 is 439
+global_cost 0 is 441
+global cost 3 is 432
+min index is 1
+
+T = 0.131203
+Path Length = 428
+Successful Moves: 1021
+
+rank 0 with current cost 432
+rank 1 with current cost 435
+rank 3 with current cost 435
+global_cost 0 is 432
+global cost 1 is 435
+global_cost 0 is 432
+global cost 2 is 443
+global_cost 0 is 432
+global cost 3 is 435
+min index is 0
+
+T = 0.124643
+Path Length = 432
+Successful Moves: 1021
+
+min index is 0
+min index is 0
+rank 2 with current cost 443
+min index is 0
+rank 3 with current cost 435
+rank 1 with current cost 433
+rank 2 with current cost 430
+min index is 2
+min index is 2
+rank 0 with current cost 433
+global_cost 0 is 433
+global cost 1 is 433
+global_cost 0 is 433
+global cost 2 is 430
+global_cost 0 is 433
+global cost 3 is 435
+min index is 2
+
+T = 0.118411
+Path Length = 430
+Successful Moves: 1021
+
+min index is 2
+rank 2 with current cost 432
+rank 0 with current cost 431
+rank 1 with current cost 427
+min index is 1
+global_cost 0 is 431
+global cost 1 is 427
+global_cost 0 is 431
+global cost 2 is 432
+global_cost 0 is 431
+global cost 3 is 433
+min index is 1
+
+T = 0.11249
+Path Length = 427
+Successful Moves: 1021
+
+rank 3 with current cost 433
+min index is 1
+min index is 1
+rank 0 with current cost 431
+rank 1 with current cost 438
+rank 3 with current cost 430
+rank 2 with current cost 428
+min index is 2
+global_cost 0 is 431
+global cost 1 is 438
+global_cost 0 is 431
+global cost 2 is 428
+global_cost 0 is 431
+global cost 3 is 430
+min index is 2
+
+T = 0.106866
+Path Length = 428
+Successful Moves: 930
+
+min index is 2
+min index is 2
+rank 1 with current cost 431
+rank 3 with current cost 428
+rank 0 with current cost 430
+global_cost 0 is 430
+global cost 1 is 431
+global_cost 0 is 430
+global cost 2 is 431
+global_cost 0 is 430
+global cost 3 is 428
+min index is 3
+
+T = 0.101522
+Path Length = 428
+Successful Moves: 1017
+
+min index is 3
+min index is 3
+rank 2 with current cost 431
+min index is 3
+rank 1 with current cost 429
+rank 0 with current cost 430
+rank 3 with current cost 427
+min index is 3
+min index is 3
+rank 2 with current cost 431
+min index is 3
+global_cost 0 is 430
+global cost 1 is 429
+global_cost 0 is 430
+global cost 2 is 431
+global_cost 0 is 430
+global cost 3 is 427
+min index is 3
+
+T = 0.0964462
+Path Length = 427
+Successful Moves: 897
+
+rank 1 with current cost 427
+rank 0 with current cost 430
+rank 3 with current cost 428
+min index is 1
+global_cost 0 is 430
+global cost 1 is 427
+global_cost 0 is 430
+global cost 2 is 436
+global_cost 0 is 430
+global cost 3 is 428
+min index is 1
+
+T = 0.0916239
+Path Length = 427
+Successful Moves: 703
+
+min index is 1
+rank 2 with current cost 436
+min index is 1
+rank 0 with current cost 429
+rank 1 with current cost 430
+rank 3 with current cost 429
+min index is 2
+rank 2 with current cost 428
+min index is 2
+global_cost 0 is 429
+global cost 1 is 430
+global_cost 0 is 429
+global cost 2 is 428
+global_cost 0 is 429
+global cost 3 is 429
+min index is 2
+
+T = 0.0870427
+Path Length = 428
+Successful Moves: 868
+
+min index is 2
+rank 0 with current cost 430
+rank 1 with current cost 428
+rank 3 with current cost 428
+rank 2 with current cost 427
+min index is 2
+min index is 2
+min index is 2
+global_cost 0 is 430
+global cost 1 is 428
+global_cost 0 is 430
+global cost 2 is 427
+global_cost 0 is 430
+global cost 3 is 428
+min index is 2
+
+T = 0.0826905
+Path Length = 427
+Successful Moves: 800
+
+rank 1 with current cost 429
+rank 3 with current cost 429
+rank 0 with current cost 429
+min index is 0
+min index is 0
+rank 2 with current cost 430
+min index is 0
+global_cost 0 is 429
+global cost 1 is 429
+global_cost 0 is 429
+global cost 2 is 430
+global_cost 0 is 429
+global cost 3 is 429
+min index is 0
+
+T = 0.078556
+Path Length = 429
+Successful Moves: 777
+
+rank 1 with current cost 428
+rank 0 with current cost 431
+rank 3 with current cost 430
+min index is 1
+rank 2 with current cost 432
+min index is 1
+min index is 1
+global_cost 0 is 431
+global cost 1 is 428
+global_cost 0 is 431
+global cost 2 is 432
+global_cost 0 is 431
+global cost 3 is 430
+min index is 1
+
+T = 0.0746282
+Path Length = 428
+Successful Moves: 763
+
+rank 1 with current cost 427
+rank 3 with current cost 429
+rank 0 with current cost 431
+rank 2 with current cost 427
+min index is 1
+min index is 1
+global_cost 0 is 431
+global cost 1 is 427
+global_cost 0 is 431
+global cost 2 is 427
+global_cost 0 is 431
+global cost 3 is 429
+min index is 1
+
+T = 0.0708968
+Path Length = 427
+Successful Moves: 633
+
+min index is 1
+rank 1 with current cost 430
+rank 0 with current cost 427
+rank 3 with current cost 431
+min index is 0
+global_cost 0 is 427
+global cost 1 is 430
+global_cost 0 is 427
+global cost 2 is 430
+global_cost 0 is 427
+global cost 3 is 431
+min index is 0
+
+T = 0.067352
+Path Length = 427
+Successful Moves: 602
+
+rank 2 with current cost 430
+min index is 0
+min index is 0
+rank 1 with current cost 427
+rank 3 with current cost 429
+rank 0 with current cost 427
+rank 2 with current cost 427
+min index is 0
+min index is 0
+min index is 0
+global_cost 0 is 427
+global cost 1 is 427
+global_cost 0 is 427
+global cost 2 is 427
+global_cost 0 is 427
+global cost 3 is 429
+min index is 0
+
+T = 0.0639844
+Path Length = 427
+Successful Moves: 536
+
+rank 1 with current cost 427
+rank 0 with current cost 431
+rank 3 with current cost 427
+global_cost 0 is 431
+global cost 1 is 427
+global_cost 0 is 431
+global cost 2 is 427
+global_cost 0 is 431
+global cost 3 is 427
+min index is 1
+
+T = 0.0607851
+Path Length = 427
+Successful Moves: 543
+
+rank 2 with current cost 427
+min index is 1
+min index is 1
+min index is 1
+rank 1 with current cost 427
+rank 3 with current cost 427
+rank 0 with current cost 427
+min index is 0
+min index is 0
+rank 2 with current cost 427
+min index is 0
+global_cost 0 is 427
+global cost 1 is 427
+global_cost 0 is 427
+global cost 2 is 427
+global_cost 0 is 427
+global cost 3 is 427
+min index is 0
+
+T = 0.0577459
+Path Length = 427
+Successful Moves: 502
+
+rank 0 with current cost 427
+rank 3 with current cost 427
+rank 2 with current cost 428
+min index is 0
+Cost did not change 5 times in a row. Exit
+
+
+Average Costs: 427
+Average Runtime: 6.93284e-310
+rank 1 with current cost 427
+min index is 0
+Cost did not change 5 times in a row. Exit
+
+
+Average Costs: 427
+Average Runtime: 0
+global_cost 0 is 427
+global cost 1 is 427
+global_cost 0 is 427
+global cost 2 is 428
+global_cost 0 is 427
+global cost 3 is 427
+min index is 0
+Cost did not change 5 times in a row. Exit
+
+Final Result:
+=============
+Path Length = 427
+Successful Moves: 1021
+Order: 36 14 44 32 38 9 48 4 37 10 31 0 21 1 15 49 8 29 33 20 28 19 34 35 2 27 30 7 25 6 42 23 22 47 5 26 50 45 11 46 3 17 13 24 12 40 18 39 41 43 16 
+The program needed an overall time of 3790.00 ms.
+
+
+Average Costs: 427
+Average Runtime: 3790
+min index is 0
+Cost did not change 5 times in a row. Exit
+
+
+Average Costs: 427
+Average Runtime: 6.92612e-310
