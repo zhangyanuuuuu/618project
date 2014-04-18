@@ -1,0 +1,42 @@
+kroA100.tsp:
+Average Costs: 21286.6
+Average Runtime: 4993
+Run result for 0 is 21282
+Run result for 1 is 21282
+Run result for 2 is 21282
+Run result for 3 is 21282
+Run result for 4 is 21282
+Run result for 5 is 21305
+Run result for 6 is 21305
+Run result for 7 is 21282
+Run result for 8 is 21282
+Run result for 9 is 21282
+
+
+a280.tsp:
+Average Costs: 2585.6
+Average Runtime: 14202
+Run result for 0 is 2579
+Run result for 1 is 2586
+Run result for 2 is 2579
+Run result for 3 is 2610
+Run result for 4 is 2579
+Run result for 5 is 2584
+Run result for 6 is 2579
+Run result for 7 is 2579
+Run result for 8 is 2600
+Run result for 9 is 2581
+
+d493.tsp:
+Average Costs: 35274.5
+Average Runtime: 41718
+Run result for 0 is 35250
+Run result for 1 is 35446
+Run result for 2 is 35078
+Run result for 3 is 35404
+Run result for 4 is 35318
+Run result for 5 is 35285
+Run result for 6 is 35251
+Run result for 7 is 35263
+Run result for 8 is 35241
+Run result for 9 is 35209

@@ -1,0 +1,41 @@
+kroA100.tsp:
+Average Costs: 21309.3
+Average Runtime: 6302
+Serial run result for 0 is 21282
+Serial run result for 1 is 21282
+Serial run result for 2 is 21332
+Serial run result for 3 is 21320
+Serial run result for 4 is 21378
+Serial run result for 5 is 21282
+Serial run result for 6 is 21282
+Serial run result for 7 is 21315
+Serial run result for 8 is 21315
+Serial run result for 9 is 21305
+
+a280.tsp:
+Average Costs: 2591
+Average Runtime: 17786
+Serial run result for 0 is 2605
+Serial run result for 1 is 2579
+Serial run result for 2 is 2583
+Serial run result for 3 is 2584
+Serial run result for 4 is 2579
+Serial run result for 5 is 2610
+Serial run result for 6 is 2603
+Serial run result for 7 is 2579
+Serial run result for 8 is 2586
+Serial run result for 9 is 2602
+
+d493.tsp:
+Average Costs: 35347.6
+Average Runtime: 46195
+Serial run result for 0 is 35419
+Serial run result for 1 is 35254
+Serial run result for 2 is 35565
+Serial run result for 3 is 35167
+Serial run result for 4 is 35239
+Serial run result for 5 is 35541
+Serial run result for 6 is 35230
+Serial run result for 7 is 35433
+Serial run result for 8 is 35331
+Serial run result for 9 is 35297
