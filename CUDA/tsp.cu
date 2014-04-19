@@ -1,6 +1,6 @@
 #include "anneal.cu"
 
-#define NUMBER_RUNS 1
+#define NUMBER_RUNS 10
 
 void readFile(char* FILENAME)
 {
@@ -33,14 +33,19 @@ void printCities(struct city *cities)
 		cout << i << ". x: " << cities[i].x << " y: " << cities[i].y << endl;
 }
 
-int main()
+int main(int argc, char* argv[])
 {
-	struct city *cities = (struct city *) malloc(CITY_N * sizeof(struct city));
+	if (argc < 2) {
+		printf("Usage: ./tsp <inputFile>\n");
+		exit(-1);
+	}
+
+	readFile(argv[1]);
+
 	int *order = (int *) malloc(CITY_N * sizeof(int));
 	float avgResult = 0.0f;
 	double avgRuntime = 0.0f;
-
-	readFile(cities);
+	int result[NUMBER_RUNS];
 
 	for (int runs = 0; runs < NUMBER_RUNS; ++runs) {
 		for (int i = 0; i < CITY_N; ++i)
@@ -52,11 +57,14 @@ int main()
 		a->order(cities, order);
 		avgResult += a->resultCost / (NUMBER_RUNS * 1.0f);
 		avgRuntime += a->runtime / (NUMBER_RUNS * 1.0f);
+		result[runs] = a->resultCost;
 	}
 
 	cout << endl << endl;
 	cout << "Average Costs: " << avgResult << endl;
 	cout << "Average Runtime: " << avgRuntime << endl;
-
+	for (int i = 0; i < NUMBER_RUNS; i++) {
+		cout<<"CUDA run result for "<<i<<" is "<<result[i]<<endl;
+	}
 	return 0;
 }

@@ -1,7 +1,5 @@
 #include "anneal.cpp"
-
-//#define FILENAME "../benchmark/kroA100.tsp"
-#define NUMBER_RUNS 1
+#define NUMBER_RUNS 10
 #define DEBUG
 
 void readFile(char* FILENAME)
@@ -22,7 +20,7 @@ void readFile(char* FILENAME)
 #endif
 		}
 	}
-	cities = (struct city *) malloc(CITY_N * sizeof(struct city));
+	cities = new city [CITY_N];
 	while (fgets(line, 80, fp) != NULL && i < CITY_N) {
 		sscanf(line, "%*d %lf %lf", &(cities[i].x), &(cities[i].y));
 		++i;
@@ -42,37 +40,47 @@ int main(int argc, char* argv[])
 		printf("Usage: ./tsp inputFile\n");
 		exit(-1);
 	}
-	readFile(argv[1]);
-
+	
 	int size, rank;
 	MPI_Init(&argc, &argv);
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
-	
-	int *order = (int *) malloc(CITY_N * sizeof(int));
+
+	readFile(argv[1]); //read file seperately
+		
+	int *order = new int [CITY_N];
 	float avgResult = 0.0f;
 	double avgRuntime = 0.0f;
+	int result[NUMBER_RUNS];
+
+	for (int i = 0; i < CITY_N; ++i) {
+		order[i] = i;
+	}
+	srand(time(NULL)+rank);
 
 	for (int runs = 0; runs < NUMBER_RUNS; ++runs) {
-		for (int i = 0; i < CITY_N; ++i) {
-				order[i] = i;
-		}
-		//broad cast
-		assert(MPI_Bcast(order, CITY_N, MPI_INT, ROOT, MPI_COMM_WORLD) == MPI_SUCCESS);
+		random_shuffle(order, order+CITY_N);
 
 		//printCities(cities);
 
-		Anneal *a = new Anneal(rank, size);
-		a->order(cities, order);
-		avgResult += a->resultCost / (NUMBER_RUNS * 1.0f);
-		avgRuntime += a->runtime / (NUMBER_RUNS * 1.0f);
+		Anneal a(rank, size);
+		a.order(cities, order);
+		avgResult += a.resultCost / (NUMBER_RUNS * 1.0f);
+		avgRuntime += a.runtime / (NUMBER_RUNS * 1.0f);
+		result[runs] = a.resultCost;
 	}
 
 	if (rank == ROOT) {
 		cout << endl << endl;
 		cout << "Average Costs: " << avgResult << endl;
 		cout << "Average Runtime: " << avgRuntime << endl;
+		for (int i = 0; i < NUMBER_RUNS; i++) {
+			cout << "Run result for "<<i<<" is "<<result[i]<<endl;
+		}
 	}
 	MPI_Finalize();
+	
+	delete [] order;
+	delete [] cities;
 	return 0;
 }

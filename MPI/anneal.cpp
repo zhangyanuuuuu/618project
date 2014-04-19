@@ -2,10 +2,12 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
+#include <cstdlib>
 #include <iostream>
 #include <cstring>
 #include <mpi.h>
 #include <assert.h>
+#include <algorithm>
 
 #define ROOT 0
 #define LCG_A 1103515245
@@ -215,7 +217,7 @@ public:
 	{
 		double t = TEMP_START;
 		long seed = (long) (time(NULL));
-		struct permutation *currPerm = (struct permutation *) malloc(sizeof(struct permutation));
+		struct permutation *currPerm = new struct permutation;
 		currPerm->order = new int [CITY_N];
 		int oldCost = 2147483647;
 		int repeatCost = 0;
@@ -228,8 +230,8 @@ public:
 		bool ans;
 		int n[6];
 		int *global_cost;
-		int minIdx = 0;
 		MPI_Status status;
+		int minIdx;
 
 		if (rank == ROOT) {
 			global_cost = new int [this->size];
@@ -247,14 +249,11 @@ public:
 		initialPath(currPerm, cities);
 		
 		struct permutation *allMinPerm;
-		if (rank == ROOT) { 
-		allMinPerm= (struct permutation *) malloc(sizeof(struct permutation));
-		allMinPerm->order = new int [CITY_N];
-		allMinPerm->nSucc = currPerm->nSucc;
-	 	allMinPerm->cost = currPerm->cost;	
-			for (int i = 0; i < CITY_N; i++) {
-				allMinPerm->order[i] = currPerm->order[i];
-			}
+		
+		if (rank == ROOT) { //only root keeps the best permutation so far
+			allMinPerm = new struct permutation;
+			allMinPerm->order = new int [CITY_N];
+			allMinPerm->cost = currPerm->cost;
 		}
 
 		/* Try up to MAX_TEMP_STEPS temperature steps. It could stop before if no kernel
@@ -303,12 +302,13 @@ public:
 					break;
 			}
 			
-			//Gather all the cost from all the processes
+			//Gather all the cost and order from all the processes
 			assert(MPI_Gather(&currPerm->cost, 1, MPI_INT, global_cost, 1, MPI_INT, ROOT, MPI_COMM_WORLD) == MPI_SUCCESS);
+			//assert(MPI_Gather(currPerm->order, CITY_N, MPI_INT, global_order, CITY_N, MPI_INT, ROOT, MPI_COMM_WORLD) == MPI_SUCCESS);
 			
 			//perform root reduction
-			minIdx = 0;
 			if (rank == ROOT) {
+				minIdx = 0;
 				int minCost = currPerm->cost;
 				for (int i = 1; i < size; i++) {
 					if (minCost > global_cost[i]) {
@@ -373,6 +373,7 @@ public:
 		resultCost = oldCost;
 		endAll = clock();
 		if (rank == ROOT) {
+			delete [] global_cost;
 			runtimeAll = (endAll - startAll) / (1.0f * CLOCKS_PER_SEC) * 1000;
 
                 cout << endl << "Final Result:" << endl;
@@ -386,11 +387,11 @@ public:
 		}
 	
 		delete [] currPerm->order;
-		free(currPerm);
+		delete currPerm;
 		
 		if (rank == ROOT) {
 			delete [] allMinPerm->order;
-			free(allMinPerm);
+			delete allMinPerm;
 		}
 	}
 };

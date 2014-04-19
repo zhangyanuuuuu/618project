@@ -39,10 +39,11 @@
 int        CITIES;                   // how any cities in TSP
 int        SEED;                     // how we restart the random num gen
                                      // comes from UNIX command line   
-double     HOT;                      // initial hot temperature 
-double     COOL;                     // multiplier for how fast we cool Tnew = COOL*Told  
+#define HOT 20
+#define COOL 0.95
                                      // it's a fraction < 1
-int        MOVESPER;                 // we do MOVESPER * nummods moves 
+#define MOVESPER 10240                 // we do MOVESPER * nummods moves 
+#define BOLTZMANN_COFF 0.1
                                      
 /* these params we assume just stay fixed */                                     
 
@@ -258,7 +259,7 @@ int accept(double deltac, double temperature)
     if( deltac < 0.0 )
         return( 1 );
     else {
-        double pa = exp( (double)(-deltac)/temperature);
+        double pa = exp( (double)(BOLTZMANN_COFF * -deltac)/temperature);
         if( uniformRandom() <= pa )
             return  1 ;
         else return  0 ;
@@ -420,7 +421,12 @@ double afterCost, beforeCost;
     }
 }
 
-
+void printInformation(int nSucc)
+{
+	printf("Path Length = %lf\n", tourcost);
+	printf("Successful Moves: %d", nSucc);
+	printf("\n");
+}
 // THERMAL EQUILIBRIUM LOOP:
 // this does the actual evolution of the TSP
 // by annealing at a fixed tempt t passed in
@@ -541,6 +547,7 @@ if( abs(deltaCost - debugCost) > 1e-9) {
     //and, draw this current TSP solution
 
     // we return the accept rate for this temp
+		printInformation(acceptCount);
     return  accRate;
 }
 
@@ -576,6 +583,7 @@ double   acceptRate;
     done = 0;
     do {
         acceptRate = annealAtTemperature(temp);
+
 
         // we count the temps 
         tempCount++;
@@ -640,8 +648,8 @@ int main(int argc, char *argv[])
     // To run:  tsp graphicsFile CITIES CLUSTERS SEED HOT COOL MOVESPER > outfile
 
     // go get command line arguments; complain if not right number 
-    if(argc != 6) {
-        fprintf(stderr, "usage: ./tsp inputFiles SEED HOT COOL MOVESPER \n");
+    if(argc != 2) {
+        fprintf(stderr, "usage: ./tsp inputFiles\n");
         exit(-1);
     }
 
@@ -650,23 +658,20 @@ int main(int argc, char *argv[])
 
     // the second one is the seed for the random number
     // generator.  get it and convert it to int and save it
-    SEED = atoi( argv[2] );
+    SEED = time(NULL);
     
     // the fifth one is the initial value for the temperature. it's a double
     //   so you'd best type it with a decimal point.
     //   get it and convert it to int and save it
-    HOT = atof( argv[3] );
     
     // the sixth one is the cooling rate (fraction < 1). it's a double
     //   so you'd best type it with a decimal point.
     //   get it and convert it to int and save it
-    COOL = atof( argv[4] );
     
     // the seventh one is the moves-per-temp multiplier.  multiply this num
     // by the number of cities to be solved to get moves per temperature. 
     // it's an integer.
     //   get it and convert it to int and save it
-    MOVESPER = atoi( argv[5] );
 
     // set up the random num stream
     srand(SEED);

@@ -9,7 +9,7 @@
 #define LCG_C 12345
 #define LCG_M 2147483646
 #define MAX_TRIES 10240
-#define N_LIMIT 20
+#define N_LIMIT 200
 #define MAX_TEMP_STEPS 500
 #define TEMP_START 20
 #define COOLING 0.95
@@ -42,20 +42,15 @@ int nint(double x)
 /* Randomisation is done by a simple linear congruential generator.
  * We use A and C values as done by glibc.
  */
-unsigned int myrand(unsigned int *x)
+
+double myrandomDouble()
 {
-	*x = ((LCG_A * (*x)) + LCG_C) & 0x7fffffff;
-	return *x;
+	return (double) rand() / RAND_MAX;
 }
 
-double myrandomDouble(unsigned int *x)
+unsigned int myrandomInt(unsigned int max)
 {
-	return (double) (myrand(x) / (double) LCG_M);
-}
-
-unsigned int myrandomInt(unsigned int *x, unsigned int max)
-{
-	return myrand(x) % max;
+	return rand() % max;
 }
 
 int euclideanDistance(struct city *a, struct city *b)
@@ -69,9 +64,9 @@ int euclideanDistance(struct city *a, struct city *b)
 /* Metroplis algorithm: Always take the downhill path and
  * sometime take the uphill path to avoid local minima
  */
-bool metropolis(const int cost, const double t, unsigned int *x)
+bool metropolis(const int cost, const double t)
 {
-	return cost < 0 || myrandomDouble(x) < exp((double) (BOLTZMANN_COEFF * -cost / t));
+	return cost < 0 || myrandomDouble() < exp((double) (BOLTZMANN_COEFF * -cost / t));
 }
 
 double prevLinkCost(int i, int* order) {
@@ -245,7 +240,7 @@ public:
 	void order(struct city *cities, int *order)
 	{
 		double t = TEMP_START;
-		long seed = (long) (time(NULL));
+		srand(time(NULL));
 		struct city *dCities;
 		struct permutation *currPerm = (struct permutation *) malloc(sizeof(struct permutation));
 		currPerm->order = new int [CITY_N];
@@ -265,8 +260,6 @@ public:
 		startAll = clock();
 
 		//initialize RNG
-		unsigned int xval = (unsigned int) seed;
-		unsigned int *x = &xval;
 
 		for (int j = 0; j < CITY_N; ++j)
 			currPerm->order[j] = order[j];
@@ -284,8 +277,8 @@ public:
 		for (int i = 0; i < MAX_TEMP_STEPS; ++i) {
 			currPerm->nSucc = 0;
 			for (int j = 0; j < maxChangeTries; ++j) {
-				n[0] = myrandomInt(x, CITY_N);
-				n[1] = myrandomInt(x, CITY_N);
+				n[0] = myrandomInt(CITY_N);
+				n[1] = myrandomInt(CITY_N);
 				if (n[0] == n[1]) {
 					if (n[0] - 1 > 0)
 						n[1] = n[0] - 1;
@@ -293,12 +286,12 @@ public:
 						n[1] = n[0] + 1;
 				}
 				dCost = evalSwap(n[0], n[1], currPerm->order);
-				//printf("The change of cost of node %d, %d is %d\n", n[0], n[1], dCost);
-				ans = metropolis(dCost, t, x);
+				ans = metropolis(dCost, t);
 				if (ans) {
 					++currPerm->nSucc;
 					currPerm->cost += dCost;
-
+					cout<<"The change of cost of node "<<n[0]<<" "<<n[1]<<" is "<<dCost<<endl;
+					cout<<"The cost now is "<<currPerm->cost<<endl;
 					//perform the swap
 
 					int tmp = currPerm->order[n[0]];

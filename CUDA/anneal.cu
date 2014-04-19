@@ -3,19 +3,25 @@
 #include <time.h>
 #include <iostream>
 #include <cuda.h>
+#include <curand.h>
+#include <curand_kernel.h>
 
-#define MAX_TRIES 10
+#define MAX_TRIES 100
 #define N_LIMIT 20
 #define MAX_TEMP_STEPS 500
-#define TEMP_START 0.5
-#define COOLING 0.99
-#define THREADS 1024
-#define MAX_CITY 1024
-#define BOLTZMANN_COEFF 0.01
+#define TEMP_START 20
+#define COOLING 0.95
+#define THREADS 256
+#define MAX_CITY 512
+#define BOLTZMANN_COEFF 0.1
 
-#define CUDA_CALL(x) do {if((x) != cudaSuccess) {\
-	printf("Error at %s:%d\n",__FILE__,__LINE__); \
-	return EXIT_FAILURE;}} while(0)
+static void HandleError( cudaError_t err, const char *file, int line ) {
+	if (err != cudaSuccess) {
+  	printf( "%s in %s at line %d\n", cudaGetErrorString( err ),file, line );
+    exit( EXIT_FAILURE );
+  }
+}
+#define HANDLE_ERROR( err ) (HandleError( err, __FILE__, __LINE__ ))
 
 using namespace std;
 
@@ -33,7 +39,7 @@ struct permutation {
 struct GlobalConstants {
 	int CITY_N;
 	city* cities;
-	unsigned int* randSeeds;
+	curandState* devStates;
 };
 
 //global variables
@@ -43,11 +49,10 @@ int CITY_N;
 //global variables on GPU
 __constant__ GlobalConstants cuTspParam;
 
-
 /* rounding function, but at .5 rounds to the lower int. Due to the TSPLIB
  * standard library.
  */
-__device__ __host__ int nint(float x)
+__device__ __host__ __inline__ int nint(float x)
 {
 	return (int) (x + 0.5);
 }
@@ -55,16 +60,16 @@ __device__ __host__ int nint(float x)
  * We use A and C values as done by glibc.
  */
 
-__device__ unsigned int randomInt(curandState *state, unsigned int max) {
+__device__ unsigned __inline__ int randomInt(curandState *state, unsigned int max) {
 	return curand(state) % max;
 }
 
-__device__ double randomDouble(curandState *state)
+__device__ __inline__ double randomDouble(curandState *state)
 {
 	return (double) curand_uniform(state);
 }
 
-__device__ bool randomBool(curandState *state)
+__device__ __inline__ bool randomBool(curandState *state)
 {
 	if ((randomInt(state, 256) >> 7) & 0x00000001)
 		return true;
@@ -77,7 +82,7 @@ __global__ void initCurand(curandState *state, unsigned long seed) {
 	curand_init(seed, idx, 0, &state[idx]);
 }
 
-__device__ __host__ int euclideanDistance(struct city *a, struct city *b)
+__device__ __host__ __inline__ int euclideanDistance(struct city *a, struct city *b)
 {
 	float dx = b->x - a->x;
 	float dy = b->y - a->y;
@@ -105,6 +110,7 @@ __device__ int reverseCost(struct city *cities, int *order, int *n)
  */
 __device__ void reverse(int *order, int *n)
 {
+	int CITY_N = cuTspParam.CITY_N;
 	int swaps = (1 + ((n[1] - n[0] + CITY_N) % CITY_N)) / 2;	// this many elements have to be swapped to have a complete reversal
 	for (int j = 0; j < swaps; ++j) {
 		int k = (n[0] + j) % CITY_N;
@@ -142,6 +148,7 @@ __device__ int transportCost(struct city *cities, int *order, int *n)
  */
 __device__ void transport(int *order, int *n)
 {
+	int CITY_N = cuTspParam.CITY_N;
 	int newOrder[MAX_CITY];
 	int m1 = (n[1] - n[0] + CITY_N) % CITY_N;
 	int m2 = (n[4] - n[3] + CITY_N) % CITY_N;
@@ -164,9 +171,9 @@ __device__ void transport(int *order, int *n)
 /* Metroplis algorithm: Always take the downhill path and
  * sometime take the uphill path to avoid local minima
  */
-__device__ bool metropolis(const int cost, const double t, unsigned int *x)
+__device__ __inline__ bool metropolis(const int cost, const double t, curandState *state)
 {
-	return cost < 0 || randomDouble(x) < exp((double) (BOLTZMANN_COEFF * -cost / t));
+	return cost < 0 || randomDouble(state) < exp((double) (BOLTZMANN_COEFF * -cost / t));
 }
 
 /* Main kernel function */
@@ -182,27 +189,27 @@ __global__ void solve(struct permutation *permutations, const float t)
 	int n[6];
 	int id = blockDim.x * blockIdx.x + threadIdx.x;
 	struct permutation *perm = &(permutations[id]);
-	unsigned int *x = &(lcg_x[id]);
+	curandState localState = cuTspParam.devStates[id];
 
 	perm->nSucc = 0;
 	for (int j = 0; j < maxChangeTries; ++j) {
 		do {
-			n[0] = randomInt(x, CITY_N);
-			n[1] = randomInt(x, CITY_N - 1);
+			n[0] = randomInt(&localState, CITY_N);
+			n[1] = randomInt(&localState, CITY_N - 1);
 			if (n[1] >= n[0]) 
 				++n[1];
 			notSeg = (n[0] - n[1] + CITY_N - 1) % CITY_N;
 		} while (notSeg < 2);
 
 		/* It is randomly choosen whether a transportation or a reversion is done */
-		if (randomBool(x)) {
-			n[2] = (n[1] + randomInt(x, abs(notSeg - 1)) + 1) % CITY_N;
+		if (randomBool(&localState)) {
+			n[2] = (n[1] + randomInt(&localState, abs(notSeg - 1)) + 1) % CITY_N;
 			n[3] = (n[2] + 1) % CITY_N;
 			n[4] = (n[0] + CITY_N- 1) % CITY_N;
 			n[5] = (n[1] + 1) % CITY_N;
 
 			dCost = transportCost(cities, perm->order, n);
-			ans = metropolis(dCost, t, x);
+			ans = metropolis(dCost, t, &localState);
 			if (ans) {
 				++perm->nSucc;
 				perm->cost += dCost;
@@ -213,7 +220,7 @@ __global__ void solve(struct permutation *permutations, const float t)
 			n[3] = (n[1] + 1) % CITY_N;
 
 			dCost = reverseCost(cities, perm->order, n);
-			ans = metropolis(dCost, t, x);
+			ans = metropolis(dCost, t, &localState);
 			if (ans) {
 				++perm->nSucc;
 				perm->cost += dCost;
@@ -270,7 +277,6 @@ public:
 	void order(struct city *cities, int *order)
 	{
 		double t = TEMP_START;
-		cudaError_t cudaStat;
 		struct permutation *dPermutation;
 		struct permutation *hPermutation = (struct permutation *) malloc(THREADS * sizeof(struct permutation));
 		struct city *dCities;
@@ -296,19 +302,26 @@ public:
 		initialPath(currPerm, cities);
 		memcpy(allMinPerm, currPerm, sizeof(struct permutation));
 
-		CUDA_CALL(cudaMalloc(&dPermutation, THREADS * sizeof(struct permutation)));
-		CUDA_CALL(cudaMalloc(&dCities, CITY_N * sizeof(struct city)));
-		CUDA_CALL(cudaMemcpy(dCities, cities, CITY_N * sizeof(struct city), cudaMemcpyHostToDevice));
+		HANDLE_ERROR(cudaMalloc(&dPermutation, THREADS * sizeof(struct permutation)));
+		HANDLE_ERROR(cudaMalloc(&dCities, CITY_N * sizeof(struct city)));
+		HANDLE_ERROR(cudaMemcpy(dCities, cities, CITY_N * sizeof(struct city), cudaMemcpyHostToDevice));
 
 		// for generate random numbers directly on the device
-		CUDA_CALL(cudaMalloc(void **)&devStates, THREADS * sizeof(curandState));
+		HANDLE_ERROR(cudaMalloc((void **)&devStates, THREADS * sizeof(curandState)));
 		initCurand<<<blocksPerGrid, threadsPerBlock>>>(devStates, 1234);
+
+		//put global constants to constant memory
+		GlobalConstants params;
+		params.cities = dCities;
+		params.CITY_N = CITY_N;
+		params.devStates = devStates;
+		cudaMemcpyToSymbol(cuTspParam, &params, sizeof(GlobalConstants));
 		
 		/* Try up to MAX_TEMP_STEPS temperature steps. It could stop before if no kernel
 		 * showed any succesful change or if the solution did not change 5 times
 		 */
 		for (int i = 0; i < MAX_TEMP_STEPS; ++i) {
-			cudaDeviceSynchronize();
+			cudaThreadSynchronize();
 			startCuda = clock();
 
 			//Copies the initial permutation to each result permutation
@@ -316,29 +329,17 @@ public:
 				memcpy(hPermutation[i].order, currPerm->order, CITY_N * sizeof(int));
 				hPermutation[i].cost = currPerm->cost;
 			}
-			cudaStat = cudaMemcpy(dPermutation, hPermutation, THREADS * sizeof(struct permutation), cudaMemcpyHostToDevice);
-			if (cudaStat != cudaSuccess) {
-				cout << "couldn't copy memory to global memory. Exit." << endl;
-				return;
-			}
+			HANDLE_ERROR(cudaMemcpy(dPermutation, hPermutation, THREADS * sizeof(struct permutation), cudaMemcpyHostToDevice));
 
 			//invoke cuda
 			solve<<<blocksPerGrid, threadsPerBlock>>>(dPermutation, t);
 
-			cudaStat = cudaThreadSynchronize();
-			if (cudaStat != cudaSuccess) {
-				cout << "something went wrong during device execution. Exit." << endl;
-				return;
-			}
+			HANDLE_ERROR(cudaThreadSynchronize());
 
 			endCuda = clock();
 			cudaRuntime += (endCuda - startCuda) * 1000 / CLOCKS_PER_SEC;
 
-			cudaStat = cudaMemcpy(hPermutation, dPermutation, THREADS * sizeof(struct permutation), cudaMemcpyDeviceToHost);
-			if (cudaStat != cudaSuccess) {
-				cout << "couldn't copy memory from global memory. Exit." << endl;
-				return;
-			}
+			HANDLE_ERROR(cudaMemcpy(hPermutation, dPermutation, THREADS * sizeof(struct permutation), cudaMemcpyDeviceToHost));
 
 			/* Loops through all resulting permutations and store the one with minimal length but
 			 * at least one swap.
@@ -371,10 +372,7 @@ public:
 				repeatCost = 0;
 
 			cout << endl << "T = " <<  t << endl;
-			//cout << "repeat: " << repeatCost << ", old: " << oldCost << ", new: " << minCost << endl;
 			printInformation(currPerm, false);
-			//for (int j = 0; j < THREADS; ++j)
-			//	printInformation(&(hPermutation[j]), false);
 
 			oldCost = minCost;
 			t *= COOLING;
