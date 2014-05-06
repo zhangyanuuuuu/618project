@@ -19,6 +19,10 @@
 #define TEMP_START 20
 #define COOLING 0.95
 #define BOLTZMANN_COEFF 0.1
+const float initialMutationRate = 0.3;
+const float mutationRate = 0.15;
+const float selectionFactor = 0.5;
+const int generationNum = 20;
 
 using namespace std;
 
@@ -36,6 +40,7 @@ struct permutation {
 //global variable
 struct city *cities;
 int CITY_N;
+int size;
 
 /* rounding function, but at .5 rounds to the lower int. Due to the TSPLIB
  * standard library.
@@ -169,6 +174,228 @@ bool metropolis(const int cost, const double t, unsigned int *x)
 	return cost < 0 || myrandomDouble(x) < exp((double) (BOLTZMANN_COEFF * -cost / t));
 }
 
+
+//functions for GA
+
+void mutate(int* tour, float rate) {
+	int pos2, temp;
+	for (int pos1 = 0; pos1 < CITY_N; pos1++) {
+		if ((static_cast<float> (rand()) / static_cast<float> (RAND_MAX)) < rate) {
+			pos2 = rand() % CITY_N;
+			temp = tour[pos1];
+			tour[pos1] = tour[pos2];
+			tour[pos2] = temp;
+		}
+	}
+}
+
+void optMutate(int* tour) {
+	int n[4];
+	int notSeg;
+	int dCost;
+	for (int i = 0; i < (int) ((float)CITY_N * mutationRate); i++) {
+		do {
+			n[0] = rand() % CITY_N;
+			n[1] = rand() % (CITY_N - 1);
+			if (n[1] >= n[0]) 
+				++n[1];
+			notSeg = (n[0] - n[1] + CITY_N - 1) % CITY_N;
+		} while (notSeg < 2);
+		n[2] = (n[0] + CITY_N - 1) % CITY_N;
+		n[3] = (n[1] + 1) % CITY_N;
+
+		dCost = reverseCost(cities, tour, n);
+		if (dCost < 0) {
+			reverse(tour, n);
+		}
+	}
+}
+
+int* crossOver(int* parent1, int* parent2) {
+	bool* child_contains = new bool [CITY_N];
+	for (int i = 0; i < CITY_N; i++) {
+		child_contains[i] = false;
+	}
+	int* child = new int [CITY_N];
+	int startPos = rand() % CITY_N;
+	int endPos = rand() % CITY_N;
+
+	if (startPos > endPos) {
+		int temp = startPos;
+		startPos = endPos;
+		endPos = temp;
+	}
+#ifdef DEBUG
+	cout<<"start position is "<<startPos<<endl;
+	cout<<"end position is "<<endPos<<endl;
+#endif
+	
+	// Loop and add the sub tour from parent1 to child
+	for (int i = startPos; i <= endPos; i++) {
+		child[i] = parent1[i];
+		child_contains[child[i]] = true;
+	}
+
+	int k = endPos + 1;
+	//first loop through the end of the tour
+	for (int i = endPos + 1; i < CITY_N; i++) {
+		if (!child_contains[parent2[i]]) {
+			child[k++ % CITY_N] = parent2[i];
+			child_contains[parent2[i]] = true;
+		}
+	}
+
+	//then go through the start of the tour
+	for (int i = 0; i <= endPos; i++) {
+		if (!child_contains[parent2[i]]) {
+			child[k++ % CITY_N] = parent2[i];
+			child_contains[parent2[i]] = true;
+		}
+	}
+
+#ifdef DEBUG
+	assert(k >= startPos);
+#endif
+	delete [] child_contains;
+	return child;
+}
+
+bool checkTour(int* tour, int CITY_N) {
+	bool* test = new bool [CITY_N];
+	for (int i = 0; i < CITY_N; i++) {
+		test[i] = false;
+	}
+	for (int i = 0; i < CITY_N; i++) {
+		test[tour[i]] = true;
+	}
+	for (int i = 0; i < CITY_N; i++) {
+		if (!test[i]) {
+			return false;
+		}
+	}
+	return true;
+}
+
+void printTour(int* tour) {
+	for (int i = 0; i < CITY_N; i++) {
+		cout<<tour[i]<<' ';
+	}
+	cout<<endl;
+}
+
+int calculate_cost(int* order, struct city *cities) {
+	int cost = 0;
+	int i1, i2;
+	for (int i = 0; i < CITY_N - 1; i++) {
+		i1 = order[i];
+		i2 = order[i+1];
+		cost += euclideanDistance(&cities[i1], &cities[i2]);
+	}
+	i1 = order[CITY_N - 1];
+	i2 = order[0];
+	cost += euclideanDistance(&cities[i1], &cities[i2]);
+#ifdef DEBUG
+	cout<<"New path cost: "<<cost<<endl;
+#endif
+	return cost;
+}
+
+int tournamentSelection(int* cost) {
+	int randomIdx = rand() % size;
+	int minIdx = randomIdx;
+	int minCost = cost[minIdx];
+	for (int i = 0; i <(int) ((float)size * selectionFactor); i++) {
+		randomIdx = rand() % size;
+		if (cost[randomIdx] < minCost) {
+			minCost = cost[randomIdx];
+			minIdx = randomIdx;
+		}
+	}
+	return minIdx;
+}
+
+int** evolveGeneration(int** generation, int*& cost) {
+	int **new_generation = new int* [size];
+	int *new_cost = new int [size];
+	int minIdx = 0;
+	int minCost = cost[0];
+	for (int i = 1; i < size; i++) {
+		if (cost[i] < minCost) {
+			minIdx = i;
+			minCost = cost[i];
+		}
+	}
+	new_generation[0] = generation[minIdx];
+	new_cost[0] = minCost;
+	for (int i = 1; i < size; i++) {
+		int idx1 = tournamentSelection(cost);
+		int idx2 = tournamentSelection(cost);
+		if (idx2 == idx1) {
+			idx2 = tournamentSelection(cost);
+		}
+		int *parent1 = generation[idx1];
+		int *parent2 = generation[idx2];
+#ifdef DEBUG
+		cout<<"parent 1 is "<<idx1<<"; parent 2 is "<<idx2<<endl;
+		printTour(parent1);
+		printTour(parent2);
+#endif
+		new_generation[i] = crossOver(parent1, parent2);
+		optMutate(new_generation[i]);
+		new_cost[i] = calculate_cost(new_generation[i], cities);
+	}
+
+	for (int i = 0; i < size; i++) {
+		if (i != minIdx) {
+			delete [] generation[i];
+		}
+	}
+	delete [] generation;
+	delete [] cost;
+	cost = new_cost;
+	return new_generation;
+}
+
+void printGeneration(int** generation) {
+	for (int i = 0; i < size; i++) {
+		printTour(generation[i]);
+	}
+}
+
+void printAvgCost(int* cost) {
+	int totalCost = 0;
+	for (int i = 0; i < size; i++) {
+		totalCost += cost[i];
+	}
+	cout<<"average cost for this generation is "<< totalCost/size <<endl;
+}
+
+void printCost(int* cost) {
+	int totalCost = 0;
+	for (int i = 0; i < size; i++) {
+		totalCost += cost[i];
+		cout<<"cost for the "<<i<<"th element is "<<cost[i]<<endl;
+	}
+	cout<<"average cost for this generation is "<< totalCost/size <<endl;
+}
+	
+void GA(int* global_order, int*& cost) {
+	int** generation = new int* [size];
+	for (int i = 0; i < size; i++) {
+		generation[i] = new int [CITY_N];
+		memcpy(generation[i], global_order+i*CITY_N, CITY_N*sizeof(int));
+	}
+	for (int i = 0; i < generationNum; i++) {
+		generation = evolveGeneration(generation, cost);
+	}
+	for (int i = 0; i < size; i++) {
+		memcpy(global_order+i*CITY_N, generation[i],CITY_N*sizeof(int));
+		delete [] generation[i];
+	}
+	delete [] generation;
+}		
+
+
 class Anneal {
 private:
 	/* Calculates the length of the initial path, which is already given.
@@ -206,11 +433,10 @@ private:
 public:
 	double runtime;
 	int resultCost;
-	int rank, size;
+	int rank;
 
-	Anneal(int rank, int size) {
+	Anneal(int rank) {
 		this->rank = rank;
-		this->size = size;
 	}
 
 	void order(struct city *cities, int *order)
@@ -230,11 +456,14 @@ public:
 		bool ans;
 		int n[6];
 		int *global_cost;
+		int *global_order;
 		MPI_Status status;
 		int minIdx;
+		char out = 0;
 
 		if (rank == ROOT) {
-			global_cost = new int [this->size];
+			global_cost = new int [size];
+			global_order = new int [size * CITY_N];
 		}
 
 		startAll = clock();
@@ -304,66 +533,56 @@ public:
 			
 			//Gather all the cost and order from all the processes
 			assert(MPI_Gather(&currPerm->cost, 1, MPI_INT, global_cost, 1, MPI_INT, ROOT, MPI_COMM_WORLD) == MPI_SUCCESS);
-			//assert(MPI_Gather(currPerm->order, CITY_N, MPI_INT, global_order, CITY_N, MPI_INT, ROOT, MPI_COMM_WORLD) == MPI_SUCCESS);
+			assert(MPI_Gather(currPerm->order, CITY_N, MPI_INT, global_order, CITY_N, MPI_INT, ROOT, MPI_COMM_WORLD) == MPI_SUCCESS);
 			
-			//perform root reduction
 			if (rank == ROOT) {
-				minIdx = 0;
-				int minCost = currPerm->cost;
-				for (int i = 1; i < size; i++) {
-					if (minCost > global_cost[i]) {
-						minCost = global_cost[i];
-						minIdx = i;
+				//find the best in all of the tours
+        minIdx = 0;
+        int minCost = currPerm->cost;
+        for (int i = 1; i < size; i++) {
+        	if (minCost > global_cost[i]) {
+          	minCost = global_cost[i];
+            minIdx = i;
+          }
+        }
+				if (minCost < allMinPerm->cost) {
+	 				allMinPerm->cost = minCost;	
+					for (int j = 0; j < CITY_N; j++) {
+						allMinPerm->order[j] = global_order[CITY_N*minIdx+j];
 					}
 				}
-				currPerm->cost = minCost;
+				//apply GA to get next xth generation
+				GA(global_order,global_cost);
 			}
 
-			//broadcast the min_index to all the processes
-			assert(MPI_Bcast(&minIdx, 1, MPI_INT, ROOT, MPI_COMM_WORLD) == MPI_SUCCESS);
-
-			//get the order from the min process
-			if (minIdx != ROOT && minIdx == rank) {
-				assert(MPI_Send(currPerm->order, CITY_N, MPI_INT, ROOT, 1234, MPI_COMM_WORLD) == MPI_SUCCESS);
-				assert(MPI_Send(&currPerm->nSucc, 1, MPI_INT, ROOT, 1235, MPI_COMM_WORLD) == MPI_SUCCESS);
-			}
-				
-			if (rank == ROOT && minIdx != ROOT) {
-				assert(MPI_Recv(currPerm->order, CITY_N, MPI_INT, minIdx, 1234, MPI_COMM_WORLD, &status) == MPI_SUCCESS);
-				assert(MPI_Recv(&currPerm->nSucc, 1, MPI_INT, minIdx, 1235, MPI_COMM_WORLD, &status) == MPI_SUCCESS);
-			}
-
-			//broadcast the order and mincost to all the processes
-			assert(MPI_Bcast(currPerm->order, CITY_N, MPI_INT, ROOT, MPI_COMM_WORLD) == MPI_SUCCESS);
-			assert(MPI_Bcast(&currPerm->cost, 1, MPI_INT, ROOT, MPI_COMM_WORLD) == MPI_SUCCESS);
-			assert(MPI_Bcast(&currPerm->nSucc, 1, MPI_INT, ROOT, MPI_COMM_WORLD) == MPI_SUCCESS);
+			//scatter to all the processes
+			assert(MPI_Scatter(global_order, CITY_N, MPI_INT, currPerm->order, CITY_N, MPI_INT, ROOT, MPI_COMM_WORLD) == MPI_SUCCESS);
+			assert(MPI_Scatter(global_cost, 1, MPI_INT, &currPerm->cost, 1, MPI_INT, ROOT, MPI_COMM_WORLD) == MPI_SUCCESS);
+			//assert(MPI_Bcast(currPerm->order, CITY_N, MPI_INT, ROOT, MPI_COMM_WORLD) == MPI_SUCCESS);
+			//assert(MPI_Bcast(&currPerm->cost, 1, MPI_INT, ROOT, MPI_COMM_WORLD) == MPI_SUCCESS);
+			//assert(MPI_Bcast(&currPerm->nSucc, 1, MPI_INT, ROOT, MPI_COMM_WORLD) == MPI_SUCCESS);
 						
 			if (rank == ROOT) {
-				if (currPerm->cost < allMinPerm->cost) {
-					allMinPerm->nSucc = currPerm->nSucc;
-	 				allMinPerm->cost = currPerm->cost;	
-					for (int i = 0; i < CITY_N; i++) {
-						allMinPerm->order[i] = currPerm->order[i];
+				if (currPerm->nSucc == 0) {
+					cout << "No swaps occured. Exit" << endl;
+					out = 1;
+				}
+
+				if (oldCost == currPerm->cost) {
+					if (++repeatCost == 5) {
+						cout << "Cost did not change 5 times in a row. Exit" << endl;
+						out = 1;
 					}
-				}
-			}
+				} else
+					repeatCost = 0;
 
-			if (currPerm->nSucc == 0) {
-				cout << "No swaps occured. Exit" << endl;
-				break;
-			}
-
-			if (oldCost == currPerm->cost) {
-				if (++repeatCost == 5) {
-					cout << "Cost did not change 5 times in a row. Exit" << endl;
-					break;
-				}
-			} else
-				repeatCost = 0;
-
-			if (rank == ROOT) {
 				cout << endl << "T = " <<  t << endl;
 				printInformation(currPerm, false);
+			}
+			
+			assert(MPI_Bcast(&out, 1, MPI_CHAR, ROOT, MPI_COMM_WORLD) == MPI_SUCCESS);
+			if (out == 1) {
+				break;
 			}
 
 			oldCost = currPerm->cost;

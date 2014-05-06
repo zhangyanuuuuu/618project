@@ -1,5 +1,5 @@
 #include "anneal.cpp"
-#define NUMBER_RUNS 10
+#define NUMBER_RUNS 1
 #define DEBUG
 
 void readFile(char* FILENAME)
@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
 		exit(-1);
 	}
 	
-	int size, rank;
+	int rank;
 	MPI_Init(&argc, &argv);
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 
 		//printCities(cities);
 
-		Anneal a(rank, size);
+		Anneal a(rank);
 		a.order(cities, order);
 		avgResult += a.resultCost / (NUMBER_RUNS * 1.0f);
 		avgRuntime += a.runtime / (NUMBER_RUNS * 1.0f);
